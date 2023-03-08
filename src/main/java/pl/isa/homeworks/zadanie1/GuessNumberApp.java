@@ -1,5 +1,8 @@
 package pl.isa.homeworks.zadanie1;
 
+import pl.isa.homeworks.zadanie1.GuessNumberGame;
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GuessNumberApp {
@@ -10,11 +13,24 @@ public class GuessNumberApp {
         System.out.println(game.getIntro());
 
         while (game.isRunning()) {
-            System.out.println(game.getInstruction());
 
-            int number = input.nextInt();
+            System.out.println(game.getInstruction());
+            boolean correctChar = true;
+
+            int number = 0;
+            while (correctChar) {
+                try {
+                    number = input.nextInt();
+                    correctChar = false;
+                } catch (InputMismatchException a) {
+                    input.nextLine();
+                    System.out.println("Your input is not a number!");
+                }
+            }
+
 
             System.out.println(game.guessNumber(number));
+
         }
     }
 }
