@@ -11,7 +11,7 @@ public class GuessNumberApp {
         Scanner input = new Scanner(System.in);
 
         System.out.println(game.getIntro());
-
+        game.getValues();
         while (game.isRunning()) {
 
             System.out.println(game.getInstruction());
@@ -24,7 +24,7 @@ public class GuessNumberApp {
                     correctChar = false;
                 } catch (InputMismatchException a) {
                     input.nextLine();
-                    System.out.println("Your input is not a number!");
+                    System.out.println("Your input is not an integer number!");
                 }
             }
 
