@@ -16,6 +16,7 @@ public class GuessNumberGame {
     int lowerLimit;
     int upperLimit;
     int k; // number of tries
+    boolean ifNumTriesIsCorrect = false;
 
     boolean lowerLowerThanUpper = false; // condition if lower limit is lower than upper limit
     boolean veryImportantCondition1 = true; // if input is not an integer
@@ -64,7 +65,16 @@ public class GuessNumberGame {
             try {
                 System.out.println("Enter maximum number of tries:");
 
-                k = numTries.nextInt();
+
+                while (!ifNumTriesIsCorrect) {
+                    k = numTries.nextInt();
+                    if (k > 0) {
+                        break;
+                    } else {
+                        System.out.println("I bet You ain't that good. Please enter positive number that is greater than 0");
+                    }
+
+                }
                 veryImportantCondition3 = false;
 
 
