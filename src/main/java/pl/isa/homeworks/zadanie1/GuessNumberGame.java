@@ -16,6 +16,8 @@ public class GuessNumberGame {
     int dolnyPrzedzial;
     int gornyPrzedzial;
     int k; // number of tries
+
+    boolean lowerLowerThanUpper = false; // condition if lower limit is lowet than upper limit
     public String getIntro() {
         String L = "Welcome to GUESS THE NUMBER game! Choose lower and upper limit of range. THen choose your number of tries. Program will automatically generate number " +
                 " from your range. Try to guess it!";
@@ -27,11 +29,20 @@ public class GuessNumberGame {
         dolnyPrzedzial= dolnyPrzedzial1.nextInt();
         System.out.println("Enter upper limit of the range:");
         Scanner gornyPrzedzial1 = new Scanner(System.in);
-        gornyPrzedzial = gornyPrzedzial1.nextInt();
-        System.out.println("Enter maximum number of tries:");
-        Scanner numTries = new Scanner(System.in);
-        k = numTries.nextInt();
-    }
+        while (!lowerLowerThanUpper) {
+            gornyPrzedzial = gornyPrzedzial1.nextInt();
+            if (gornyPrzedzial > dolnyPrzedzial) {
+                break;
+            }
+            else {
+                System.out.println("You must choose upper limit that is higher than lower limit! Try again:");
+            }
+        }
+            System.out.println("Enter maximum number of tries:");
+            Scanner numTries = new Scanner(System.in);
+            k = numTries.nextInt();
+
+        }
 
     public boolean isRunning() {
         if (j == k) {

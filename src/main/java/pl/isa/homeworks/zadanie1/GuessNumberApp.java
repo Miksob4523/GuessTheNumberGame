@@ -16,7 +16,6 @@ public class GuessNumberApp {
 
             System.out.println(game.getInstruction());
             boolean correctChar = true;
-
             int number = 0;
             while (correctChar) {
                 try {
