@@ -18,30 +18,62 @@ public class GuessNumberGame {
     int k; // number of tries
 
     boolean lowerLowerThanUpper = false; // condition if lower limit is lowet than upper limit
+    boolean veryImportantCondition1 = true; // if input is not an integer
+    boolean veryImportantCondition2 = true; // if input is not an integer
+    boolean veryImportantCondition3 = true; // if input is not an integer
+    Scanner dolnyPrzedzial1 = new Scanner(System.in);
+    Scanner gornyPrzedzial1 = new Scanner(System.in);
+    Scanner numTries = new Scanner(System.in);
     public String getIntro() {
         String L = "Welcome to GUESS THE NUMBER game! Choose lower and upper limit of range. THen choose your number of tries. Program will automatically generate number " +
                 " from your range. Try to guess it!";
         return L;
     }
     public void getValues() {
-        System.out.println("Enter lower limit of the range:");
-        Scanner dolnyPrzedzial1 = new Scanner(System.in);
-        dolnyPrzedzial= dolnyPrzedzial1.nextInt();
-        System.out.println("Enter upper limit of the range:");
-        Scanner gornyPrzedzial1 = new Scanner(System.in);
-        while (!lowerLowerThanUpper) {
-            gornyPrzedzial = gornyPrzedzial1.nextInt();
-            if (gornyPrzedzial > dolnyPrzedzial) {
-                break;
-            }
-            else {
-                System.out.println("You must choose upper limit that is higher than lower limit! Try again:");
+        while (veryImportantCondition1) {
+            try {
+                System.out.println("Enter lower limit of the range:");
+                dolnyPrzedzial = dolnyPrzedzial1.nextInt();
+                veryImportantCondition1 = false;
+            } catch (InputMismatchException a) {
+                dolnyPrzedzial1.nextLine();
+                System.out.println("Your input is not an integer number!");
             }
         }
-            System.out.println("Enter maximum number of tries:");
-            Scanner numTries = new Scanner(System.in);
-            k = numTries.nextInt();
+        while (veryImportantCondition2) {
+            try {
+                System.out.println("Enter upper limit of the range:");
 
+                while (!lowerLowerThanUpper) {
+                    gornyPrzedzial = gornyPrzedzial1.nextInt();
+                    if (gornyPrzedzial > dolnyPrzedzial) {
+                        break;
+                    } else {
+                        System.out.println("You must choose upper limit that is higher than lower limit! Try again:");
+                    }
+
+                }
+                veryImportantCondition2 = false;
+            } catch (InputMismatchException a){
+                gornyPrzedzial1.nextLine();
+                System.out.println("Your input is not an integer number!");
+            }
+        }
+        while (veryImportantCondition3){
+
+            try {
+                System.out.println("Enter maximum number of tries:");
+
+                k = numTries.nextInt();
+                veryImportantCondition3 = false;
+
+
+            }
+            catch (InputMismatchException a) {
+                numTries.nextLine();
+                System.out.println("Your input is not an integer number!");
+            }
+            }
         }
 
     public boolean isRunning() {
