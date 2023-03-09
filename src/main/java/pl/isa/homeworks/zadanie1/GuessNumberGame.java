@@ -13,30 +13,30 @@ public class GuessNumberGame {
     String b; // guessnumber output
     String c; //getinstructions output
     boolean isRunning = true; // condition if program should still run.
-    int dolnyPrzedzial;
-    int gornyPrzedzial;
+    int lowerLimit;
+    int upperLimit;
     int k; // number of tries
 
-    boolean lowerLowerThanUpper = false; // condition if lower limit is lowet than upper limit
+    boolean lowerLowerThanUpper = false; // condition if lower limit is lower than upper limit
     boolean veryImportantCondition1 = true; // if input is not an integer
     boolean veryImportantCondition2 = true; // if input is not an integer
     boolean veryImportantCondition3 = true; // if input is not an integer
-    Scanner dolnyPrzedzial1 = new Scanner(System.in);
-    Scanner gornyPrzedzial1 = new Scanner(System.in);
+    Scanner lowerLimit1 = new Scanner(System.in);
+    Scanner upperLimit1 = new Scanner(System.in);
     Scanner numTries = new Scanner(System.in);
     public String getIntro() {
-        String L = "Welcome to GUESS THE NUMBER game! Choose lower and upper limit of range. THen choose your number of tries. Program will automatically generate number " +
-                " from your range. Try to guess it!";
+        String L = "[Welcome to GUESS THE NUMBER game!] \n[Choose lower and upper limit of range.] \n[THen choose your number of tries.] \n[Program will automatically generate number " +
+                " from your range.] \n[Try to guess it!]";
         return L;
     }
     public void getValues() {
         while (veryImportantCondition1) {
             try {
                 System.out.println("Enter lower limit of the range:");
-                dolnyPrzedzial = dolnyPrzedzial1.nextInt();
+                lowerLimit = lowerLimit1.nextInt();
                 veryImportantCondition1 = false;
             } catch (InputMismatchException a) {
-                dolnyPrzedzial1.nextLine();
+                lowerLimit1.nextLine();
                 System.out.println("Your input is not an integer number!");
             }
         }
@@ -45,8 +45,8 @@ public class GuessNumberGame {
                 System.out.println("Enter upper limit of the range:");
 
                 while (!lowerLowerThanUpper) {
-                    gornyPrzedzial = gornyPrzedzial1.nextInt();
-                    if (gornyPrzedzial > dolnyPrzedzial) {
+                    upperLimit = upperLimit1.nextInt();
+                    if (upperLimit > lowerLimit) {
                         break;
                     } else {
                         System.out.println("You must choose upper limit that is higher than lower limit! Try again:");
@@ -55,7 +55,7 @@ public class GuessNumberGame {
                 }
                 veryImportantCondition2 = false;
             } catch (InputMismatchException a){
-                gornyPrzedzial1.nextLine();
+                upperLimit1.nextLine();
                 System.out.println("Your input is not an integer number!");
             }
         }
@@ -89,13 +89,13 @@ public class GuessNumberGame {
 
     public String getInstruction() {
 
-           c = ("You have " + (k - i) + " tries left Remember that You're guessing number between " + dolnyPrzedzial + " and " + gornyPrzedzial);
+           c = ("You have " + (k - i) + " tries left Remember that You're guessing number between " + lowerLimit + " and " + upperLimit);
 
         return c;
     }
 
     public String guessNumber(int number) {
-        int y = (int)((gornyPrzedzial - dolnyPrzedzial)*x + dolnyPrzedzial);
+        int y = (int)((upperLimit - lowerLimit)*x + lowerLimit);
             if (number > y) {
                 b = "Wrong! the number is less than " + number;
             } else if (number < y) {
